@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>해상도 분기 테스트(-webkit-device-pixel-ratio)</title>
+    <style>
+        html, body {
+            margin: 0;
+        }
+        .wrap {
+            padding-top: 30px;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 2px 2px rgba(0, 0, 0, 0.8);
+        }
+        .image_list:after {
+            display: block;
+            clear: both;
+            content: '';
+        }
+        .item {
+            float: left;
+            width: 33.33%;
+            aspect-ratio: 1/1;
+            padding-top: 30px;
+            background-repeat: no-repeat;
+            background-size: auto 100%;
+        }
+        .item:nth-child(1) {
+            background-image: url(image/minion_1x.png);
+        }
+        .item:nth-child(2) {
+            background-image: url(image/minion_2x.png);
+        }
+        .item:nth-child(3) {
+            background-image: url(image/minion_4x.png);
+        }
+        .picked_item {
+            width: 33.33%;
+            aspect-ratio: 1/1;
+            margin: 30px auto 0;
+            padding-top: 30px;
+            background-image: url(image/minion_1x.png);
+            background-repeat: no-repeat;
+            background-size: auto 100%;
+            background-position: 50% 0;
+            text-align: center;
+        }
+        .picked_item:after {
+            display: block;
+            content: '1배수 이미지';
+        }
+        @media (-webkit-min-device-pixel-ratio: 2) {
+            .picked_item {
+                background-image: url(image/minion_2x.png);
+            }
+            .picked_item:after {
+                content: '2배수 이미지';
+            }
+        }
+        @media (-webkit-min-device-pixel-ratio: 3) {
+            .picked_item {
+                background-image: url(image/minion_4x.png);
+            }
+            .picked_item:after {
+                content: '3배수 이미지';
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="image_list">
+            <div class="item">1배</div>
+            <div class="item">2배</div>
+            <div class="item">3배</div>
+        </div>
+        <div class="picked_item">현재 기기에서 적용된 이미지 :</div>
+    </div>
+</body>
+</html>
